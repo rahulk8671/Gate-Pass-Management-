@@ -42,6 +42,20 @@ export default (state = gatepassReducerDefaultState, action) => {
             ...gatepass, 
             outTime: moment()
           }
+        } else {
+          return gatepass;
+        }
+      });
+    case 'RESET':
+      return state.map((gatepass) => {
+        if(gatepass.id === action.id) {
+          return {
+            ...gatepass, 
+            outTime: null,
+            isOut: !!gatepass.isOut
+          }
+        } else {
+          return gatepass;
         }
       });
     default:

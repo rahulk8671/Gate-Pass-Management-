@@ -4,7 +4,7 @@ import moment, { max } from 'moment';
 import { Card, Divider, Button } from 'antd';
 import { Switch } from 'antd';
 import { connect } from 'react-redux';
-import { changeInStatus, changeOutTime } from '../actions/gatepasses';
+import { changeInStatus, changeOutTime, reset } from '../actions/gatepasses';
 import jsPDF from 'jspdf';
 
 export class GatePassListItem extends React.Component {
@@ -21,6 +21,14 @@ export class GatePassListItem extends React.Component {
     const { id } = this.props;
     this.props.changeInStatus(id);
     this.props.changeOutTime(id);
+  }
+
+  reset = (e) => {
+    e.preventDefault();
+    const { id } = this.props;
+    //alert('hi');
+    this.props.reset(id);
+    this.props.changeInStatus(id);
   }
 
   download = (e) => {
@@ -55,7 +63,8 @@ export class GatePassListItem extends React.Component {
           <Switch disabled={!!outTime} checked={isOut} onChange={this.onChange}/>
           {isOut ? <p>IN</p> : <p>OUT</p>}
           {outTime && <p>{moment(outTime).format('hh:mm A')}</p>}
-          <Button onClick={this.download}>Download Gatepass</Button>
+          <div className="grbt"><Button onClick={this.download}>Download Gatepass</Button>{outTime && <Button type="danger" onClick={this.reset}>Reset</Button>}</div>
+          
         </Card>
       </div>
     )
@@ -64,7 +73,8 @@ export class GatePassListItem extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   changeInStatus: (id) => dispatch(changeInStatus(id)),
-  changeOutTime: (id) => dispatch(changeOutTime(id))
+  changeOutTime: (id) => dispatch(changeOutTime(id)),
+  reset: (id) => dispatch(reset(id))
 });
 
 export default connect(undefined, mapDispatchToProps)(GatePassListItem);

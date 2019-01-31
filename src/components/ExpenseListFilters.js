@@ -44,7 +44,7 @@ export class ExpenseListFilters extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="filter">
         <Input
           type="text"
           value={this.props.filters.text}

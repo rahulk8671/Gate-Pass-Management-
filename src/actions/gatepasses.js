@@ -57,3 +57,8 @@ export const changeOutTime = (id) => ({
   type: 'UPDATE_OUTTIME',
   id
 });
+
+export const reset = (id) => ({
+  type: "RESET",
+  id
+});
