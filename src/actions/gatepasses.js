@@ -12,7 +12,8 @@ export const addGatePass = (
     Purpose = '',
     Address = '',
     image = null,
-    isOut = true
+    isOut = true,
+    outTime = null
   } = {}
 ) => ({
   type: 'ADD_GATEPASS',
@@ -27,7 +28,8 @@ export const addGatePass = (
     Purpose,
     Address,
     image,
-    isOut
+    isOut,
+    outTime
   }
 });
 
@@ -47,5 +49,11 @@ export const editGatePass = (id, updates) => ({
 //CHANGE_IN_STATUS
 export const changeInStatus = (id) => ({
   type: 'CHANGE_IN_STATUS',
+  id
+});
+
+//UPDATE_OUTTIME
+export const changeOutTime = (id) => ({
+  type: 'UPDATE_OUTTIME',
   id
 });

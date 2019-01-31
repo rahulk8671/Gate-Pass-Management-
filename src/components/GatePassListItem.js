@@ -4,7 +4,7 @@ import moment, { max } from 'moment';
 import { Card, Divider, Button } from 'antd';
 import { Switch } from 'antd';
 import { connect } from 'react-redux';
-import { changeInStatus } from '../actions/gatepasses';
+import { changeInStatus, changeOutTime } from '../actions/gatepasses';
 import jsPDF from 'jspdf';
 
 export class GatePassListItem extends React.Component {
@@ -20,6 +20,7 @@ export class GatePassListItem extends React.Component {
     //this.setState(() => ({ checkIn: checked })); 
     const { id } = this.props;
     this.props.changeInStatus(id);
+    this.props.changeOutTime(id);
   }
 
   download = (e) => {
@@ -34,16 +35,11 @@ export class GatePassListItem extends React.Component {
     doc.text(`In Date: ${moment(this.props.createdAt).format("L")}`,30,230);
     doc.text(`In Time: ${moment(this.props.createdAtTime).format('hh:mm A')}`,30,260);
     doc.text(`Purpose: ${this.props.Purpose}`,30,290);
-    // doc.text(`PDF filename: ${this.state.judul}`, 0.5, 0.8)
-    // doc.text(`Recipient: ${this.state.nama}`, 0.5, 1.1)
-    // doc.text(`Message: ${this.state.pesan}`, 0.5, 1.4)
-    // doc.addImage(this.state.gambar, 'JPEG', 0.5, 2, 2.5, 2.5)
-    // format: (image_file, 'image_type', X_init, Y_init, X_fin, Y_fin)
 
     doc.save('gatepass.pdf');
   }
   render() {
-    const { id, Name, createdAt, createdAtTime, image, Purpose, isOut } = this.props;
+    const { id, Name, createdAt, createdAtTime, image, Purpose, isOut, outTime } = this.props;
     return (
       <div> 
       <Divider/>
@@ -56,18 +52,19 @@ export class GatePassListItem extends React.Component {
           <p>{moment(createdAt).format("L")}</p>
           <p>{moment(createdAtTime).format('hh:mm A')}</p>
           <p>{Purpose}</p>
-          <Switch checked={isOut} onChange={this.onChange}/>
+          <Switch disabled={!!outTime} checked={isOut} onChange={this.onChange}/>
           {isOut ? <p>IN</p> : <p>OUT</p>}
+          {outTime && <p>{moment(outTime).format('hh:mm A')}</p>}
           <Button onClick={this.download}>Download Gatepass</Button>
         </Card>
-        
       </div>
     )
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeInStatus: (id) => dispatch(changeInStatus(id))
+  changeInStatus: (id) => dispatch(changeInStatus(id)),
+  changeOutTime: (id) => dispatch(changeOutTime(id))
 });
 
 export default connect(undefined, mapDispatchToProps)(GatePassListItem);

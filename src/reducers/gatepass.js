@@ -1,3 +1,5 @@
+import moment from "moment";
+
 // Gatepass Reducer
 
 const gatepassReducerDefaultState = [];
@@ -32,6 +34,15 @@ export default (state = gatepassReducerDefaultState, action) => {
         } else {
           return gatepass;
         };
+      });
+    case 'UPDATE_OUTTIME':
+      return state.map((gatepass) => {
+        if(gatepass.id === action.id) {
+          return {
+            ...gatepass, 
+            outTime: moment()
+          }
+        }
       });
     default:
       return state;
