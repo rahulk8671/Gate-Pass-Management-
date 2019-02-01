@@ -53,6 +53,7 @@ export class ExpenseListFilters extends React.Component {
           placeholder='Search...'
         /></div>
         <RangePicker
+          
           defaultValue={[this.state.startOf, this.state.endOf]}
           onChange={this.onChange}
         />
