@@ -45,12 +45,13 @@ export class ExpenseListFilters extends React.Component {
 
     return (
       <div className="filter">
-        <Input
+
+        <div className="ser"><Input
           type="text"
           value={this.props.filters.text}
           onChange={this.onTextChange}
           placeholder='Search...'
-        />
+        /></div>
         <RangePicker
           defaultValue={[this.state.startOf, this.state.endOf]}
           onChange={this.onChange}

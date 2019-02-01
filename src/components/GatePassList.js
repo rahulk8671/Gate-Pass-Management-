@@ -8,7 +8,7 @@ export const GatePassList = (props) => (
   <div>
     {
       props.gatepasses.length === 0 ? (
-        <Empty />
+        <div className="spcae"><Empty /></div>
       ) : (
           props.gatepasses.map((gatepass) => {
             return <GatePassListItem key={gatepass.id} {...gatepass} />;
