@@ -46,10 +46,23 @@ export class GatePassListItem extends React.Component {
     doc.setFontSize(10);
     doc.text('Marketing Division, PBSO, Chandigarh', 150, 65);
     doc.addImage(this.props.image, 'Base64', 20, 110, 100, 80);
-    doc.text('Visitor\' s signature', 25, 210);
-    doc.text('Employess\'s signature', 25, 240);
-    doc.text(`ID no`, 150,115);
-    doc.text(`Pass no`, 150,130);
+    doc.setTextColor('#C0C0C0');
+    //doc.setFillColor(192,192,192, 0);
+    doc.text('Visitor\'s signature', 25, 210);
+    doc.text('Employee\'s signature', 25, 235);
+    doc.text(`ID no                 ${this.props.createdAt}`, 150,115);
+    doc.text(`Pass no             ${this.props.PassNo}`, 150,130);
+    doc.text(`Name                ${this.props.Name}`, 150, 145);
+    doc.text(`Date                  ${moment(this.props.createdAt).format("L")}`, 150, 160);
+    doc.text(`To Meet             ${this.props.ToMeet}`, 150, 175);
+    doc.text(`Purpose             ${this.props.Purpose}`, 150, 190);
+    doc.text(`Time                  ${moment(this.props.createdAtTime).format('hh:mm A')}`, 150, 205);
+    doc.text(`Address             ${this.props.Address}`, 150, 220);
+    doc.text(`Mobile no           ${this.props.MobileNO}`, 150, 235);
+    doc.setTextColor('#696969');
+    doc.text(`Meet the instructed person only. Please cooperate with security gurd.`, 20, 260);
+    doc.text(`Return the gate pass before you leave`, 70, 275);
+
     //doc.text(`Name: ${this.props.Name}      ${this.props.createdAt}`, 30, 30 );
     //doc.addImage(this.props.image, 'Base64', 30, 40, 250, 160);
     //doc.text(`In Date: ${moment(this.props.createdAt).format("L")}`,30,230);
