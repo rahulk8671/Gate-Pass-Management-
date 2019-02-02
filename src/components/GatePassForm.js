@@ -98,12 +98,9 @@ export default class GatePassForm extends React.Component {
         facingMode: "user"
       };
     return (
-      <div>
-      <Row>
-    <Col span={4}></Col>
-    <Col span={16}>
+    <Col span={16} className="gate-pass-form">
         {this.state.error && <p>{this.state.error}</p>}
-        <div>
+        <div className="cam">
           <Webcam
             audio={false}
             height={350}
@@ -113,66 +110,65 @@ export default class GatePassForm extends React.Component {
             videoConstraints={videoConstraints}
           />
           <button onClick={this.capture}>Capture photo</button>
+          <img src={this.state.image} alt=""/>
         </div>
-        <img src={this.state.image} alt=""/>
+      <div className="form-div">
         <form onSubmit={this.onSubmit}>
-            <Input
-                style={{ width: 200}}
-                type="text"
-                placeholder="Name"
-                autoFocus
-                value={this.state.Name}
-                onChange={this.onNameChange}
-            />
-            <Input
-                style={{ width: 200}}
-                type="text"
-                placeholder="Mobile number"
-                value={this.state.MobileNO}
-                onChange={this.onMobileChange}
-            />
-            <Input
-                style={{ width: 200}}
-                type="text"
-                placeholder="Pass number"
-                value={this.state.PassNo}
-                onChange={this.onPassChange}
-            />
-            <DatePicker
-                defaultValue={this.state.createdAt}
-                onChange={this.onDateChange}
-            />
-            <TimePicker
-                defaultValue={this.state.createdAtTime}
-                onChange={this.onChange}
-            />
-            <Input
-                style={{ width: 200}}
-                type="text"
-                placeholder="To Meet"
-                value={this.state.ToMeet}
-                onChange={this.onToMeetChange}
-            />
-            <Input
-                style={{ width: 200}}
-                type="text"
-                placeholder="Purpose"
-                value={this.state.Purpose}
-                onChange={this.onPurposeChange}
-            />
-            <Input
-                style={{ width: 200}}
-                type="text"
-                placeholder="Address"
-                value={this.state.Address}
-                onChange={this.onAddressChange}
-            />
-            <button>Add Gatepass</button>
-        </form>
+              <Input
+                  style={{ width: 200}}
+                  type="text"
+                  placeholder="Name"
+                  autoFocus
+                  value={this.state.Name}
+                  onChange={this.onNameChange}
+              />
+              <Input
+                  style={{ width: 200}}
+                  type="text"
+                  placeholder="Mobile number"
+                  value={this.state.MobileNO}
+                  onChange={this.onMobileChange}
+              />
+              <Input
+                  style={{ width: 200}}
+                  type="text"
+                  placeholder="Pass number"
+                  value={this.state.PassNo}
+                  onChange={this.onPassChange}
+              />
+              <DatePicker
+                  defaultValue={this.state.createdAt}
+                  onChange={this.onDateChange}
+              />
+              <TimePicker
+                  defaultValue={this.state.createdAtTime}
+                  onChange={this.onChange}
+              />
+              <Input
+                  style={{ width: 200}}
+                  type="text"
+                  placeholder="To Meet"
+                  value={this.state.ToMeet}
+                  onChange={this.onToMeetChange}
+              />
+              <Input
+                  style={{ width: 200}}
+                  type="text"
+                  placeholder="Purpose"
+                  value={this.state.Purpose}
+                  onChange={this.onPurposeChange}
+              />
+              <Input
+                  style={{ width: 200}}
+                  type="text"
+                  placeholder="Address"
+                  value={this.state.Address}
+                  onChange={this.onAddressChange}
+              />
+              <button>Add Gatepass</button>
+          </form>
+        </div>
         </Col>
-    <Col span={4}></Col>
-  </Row>
-      </div>
     )
   }
 }
