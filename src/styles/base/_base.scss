@@ -18,3 +18,11 @@ button:disabled {
 .is-active {
   font-weight: bold;
 }
+
+#app {
+  height: 100%;
+  overflow: hidden;
+  >div {
+    height: 100%;
+  }
+}

@@ -10,14 +10,10 @@ export class AddGatePass extends React.Component {
       this.props.history.push('/');
     };
     render() {
-      return (
-        <div>
-          
+      return (          
           <GatePassForm
             onSubmit={this.onSubmit}
           />
-          
-        </div>
       );
     }
   }
