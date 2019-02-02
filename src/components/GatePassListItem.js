@@ -6,13 +6,15 @@ import { Switch } from 'antd';
 import { connect } from 'react-redux';
 import { changeInStatus, changeOutTime, reset } from '../actions/gatepasses';
 import jsPDF from 'jspdf';
+import indi from '../../public/images/indi';
 
 export class GatePassListItem extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      checkIn: props.isOut
+      checkIn: props.isOut,
+      indianOil: indi()
     }
   }
 
@@ -35,15 +37,24 @@ export class GatePassListItem extends React.Component {
     e.preventDefault();
 
     var doc = new jsPDF('p', 'pt');
-    doc.setFontSize(20);
+    doc.setFontSize(10);
     doc.setTextColor(40);
     doc.setFontStyle('normal');
-    doc.text(`Name: ${this.props.Name}`, 30, 30);
-    doc.addImage(this.props.image, 'Base64', 30, 40, 250, 160);
-    doc.text(`In Date: ${moment(this.props.createdAt).format("L")}`,30,230);
-    doc.text(`In Time: ${moment(this.props.createdAtTime).format('hh:mm A')}`,30,260);
-    doc.text(`Purpose: ${this.props.Purpose}`,30,290);
-
+    doc.addImage(this.state.indianOil, 'Base64', 20,30, 70, 50);
+    doc.setFontSize(15);
+    doc.text('Indian Oil Corporation Ltd', 150, 50);
+    doc.setFontSize(10);
+    doc.text('Marketing Division, PBSO, Chandigarh', 150, 65);
+    doc.addImage(this.props.image, 'Base64', 20, 110, 100, 80);
+    doc.text('Visitor\' s signature', 25, 210);
+    doc.text('Employess\'s signature', 25, 240);
+    doc.text(`ID no`, 150,115);
+    doc.text(`Pass no`, 150,130);
+    //doc.text(`Name: ${this.props.Name}      ${this.props.createdAt}`, 30, 30 );
+    //doc.addImage(this.props.image, 'Base64', 30, 40, 250, 160);
+    //doc.text(`In Date: ${moment(this.props.createdAt).format("L")}`,30,230);
+    //doc.text(`In Time: ${moment(this.props.createdAtTime).format('hh:mm A')}`,30,260);
+    //doc.text(`Purpose: ${this.props.Purpose}`,30,290);
     doc.save('gatepass.pdf');
   }
   render() {

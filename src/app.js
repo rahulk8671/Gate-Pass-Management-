@@ -11,6 +11,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import { addGatePass } from './actions/gatepasses';
 import 'antd/dist/antd.css';
+import indi from '../public/images/indi';
 
 const store = configureStore();
 
