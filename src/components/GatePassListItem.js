@@ -71,11 +71,7 @@ export class GatePassListItem extends React.Component {
     doc.text(`${moment(this.props.createdAtTime).format('hh:mm A')}`, 250, 205);
     doc.text(`${this.props.Address}`, 250, 220);
     doc.text(`${this.props.MobileNO}`, 250, 235);
-    //doc.text(`Name: ${this.props.Name}      ${this.props.createdAt}`, 30, 30 );
-    //doc.addImage(this.props.image, 'Base64', 30, 40, 250, 160);
-    //doc.text(`In Date: ${moment(this.props.createdAt).format("L")}`,30,230);
-    //doc.text(`In Time: ${moment(this.props.createdAtTime).format('hh:mm A')}`,30,260);
-    //doc.text(`Purpose: ${this.props.Purpose}`,30,290);
+
     doc.save('gatepass.pdf');
   }
   render() {
