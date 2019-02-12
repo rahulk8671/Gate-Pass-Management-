@@ -1,5 +1,5 @@
 {
   "snapshotSerializers": [
-    "enzyme-to-json/serializer"
+    "enzyme,-to-json/serializer"
   ]
 }

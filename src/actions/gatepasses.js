@@ -1,8 +1,10 @@
 import uuid from 'uuid';
+import database from '../firebase/firebase';
 
 // ADD_GATEPASS
 export const addGatePass = (
   {
+    id,
     Name = '',
     MobileNO = '',
     PassNo = '',
@@ -18,12 +20,12 @@ export const addGatePass = (
 ) => ({
   type: 'ADD_GATEPASS',
   gatepass: {
-    id: uuid(),
+    id,
     Name,
     MobileNO,
     PassNo,
     createdAt,
-    createdAtTime,
+    createdAtTime, 
     ToMeet,
     Purpose,
     Address,
@@ -32,6 +34,37 @@ export const addGatePass = (
     outTime
   }
 });
+
+//startAddGatepass
+export const startAddGatepass = (gatePassData = {}) => {
+  return (dispatch) => {
+    const {
+      Name = '',
+      MobileNO = '',
+      PassNo = '',
+      createdAt = 0,
+      createdAtTime = 0,
+      ToMeet = '',
+      Purpose = '',
+      Address = '',
+      image = null,
+      isOut = true,
+      outTime = null
+    } = gatePassData;
+    
+    const gatePass = {Name, MobileNO, PassNo, createdAt, createdAtTime, ToMeet, Purpose, Address, image, isOut, outTime};
+    
+    return database.ref('gatepass').push(gatePass).then((ref) => {
+      console.log('data',gatePass);
+      dispatch(addGatePass({
+        id: ref.key,
+        ...gatePass
+      }));
+    }).catch((e) => {
+      console.log('error ', e);
+    })
+  }
+}
 
 // REMOVE_GATEPASS
 export const removeGatePass = ({ id } = {}) => ({
