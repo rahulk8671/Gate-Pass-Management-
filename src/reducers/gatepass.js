@@ -58,6 +58,8 @@ export default (state = gatepassReducerDefaultState, action) => {
           return gatepass;
         }
       });
+    case 'SET_GATEPASS':
+      return action.gatepass;
     default:
       return state;
   }

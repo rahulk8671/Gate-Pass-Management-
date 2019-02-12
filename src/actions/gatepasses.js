@@ -91,7 +91,32 @@ export const changeOutTime = (id) => ({
   id
 });
 
+//RESET
 export const reset = (id) => ({
   type: "RESET",
   id
 });
+
+//SET_GATEPASS
+export const setGatePasses = (gatepass) => ({
+  type: 'SET_GATEPASS',
+  gatepass
+});
+
+export const startSetGatePasses = () => {
+  return (dispatch) => {
+    
+    return database.ref('gatepass').once('value').then((snapshot) => {
+      const gatepass = [];
+
+      snapshot.forEach((childSnapshot) => {
+        gatepass.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      
+      dispatch(setGatePasses(gatepass));
+    });
+  };
+};  
