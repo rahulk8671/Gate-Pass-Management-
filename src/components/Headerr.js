@@ -8,9 +8,8 @@ const Headerr = () => (
   
   <Layout className="layout">
   <Header>
-      <NavLink to="/" activeClassName="is-active" exact={true}>Dashboard</NavLink>
+      <NavLink to="/dashboard" activeClassName="is-active" exact={true}>Dashboard</NavLink>
       <NavLink className="cre" to="/create" activeClassName="is-active">Create GatePass</NavLink>
-      
   </Header>
   </Layout>
 );

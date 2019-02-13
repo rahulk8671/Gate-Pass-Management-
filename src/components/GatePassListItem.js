@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment, { max } from 'moment';
 import { Card, Divider, Button } from 'antd';
-import { Switch } from 'antd';
+import { Switch, message } from 'antd';
 import { connect } from 'react-redux';
 import { setChangeInStatus, setChangeOutTime, setReset } from '../actions/gatepasses';
 import jsPDF from 'jspdf';
@@ -21,16 +21,17 @@ export class GatePassListItem extends React.Component {
   onChange = (checked) => {
     //this.setState(() => ({ checkIn: checked })); 
     const { id } = this.props;
-    this.props.setChangeInStatus(id);
-    this.props.setChangeOutTime(id);
+   
+    message.loading('Action in progress', this.props.setChangeInStatus(id), this.props.setChangeOutTime(id))
+      .then(() => message.success('Loading finished', 2.5));
   }
 
   reset = (e) => {
     e.preventDefault();
     const { id } = this.props;
     //alert('hi');
-    this.props.setReset(id);
-    this.props.setChangeInStatus(id);
+    message.loading('Action in progress', this.props.setReset(id), this.props.setChangeInStatus(id))
+      .then(() => message.success('Loading finished', 2.5));
   }
 
   download = (e) => {

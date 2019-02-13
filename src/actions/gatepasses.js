@@ -1,6 +1,7 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
 import moment from 'moment';
+import { Switch, message } from 'antd';
 
 // ADD_GATEPASS
 export const addGatePass = (
@@ -96,7 +97,11 @@ export const setChangeInStatus = (id) => {
         isOut: !checkIsOut
       }).then(() => {
         dispatch(changeInStatus(id));
-      });
+      }).catch((e) => {
+        message.error('changeInStatus failed');
+      })
+    }).catch((e) => {
+      message.error('reading isOut failed');
     })
   }
 }

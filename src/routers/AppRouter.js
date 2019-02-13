@@ -6,13 +6,15 @@ import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import Headerr from '../components/Headerr';
 import AddGatePass from '../components/AddGatePass';
+import LoginPage from '../components/LoginPage';
 
 const AppRouter = () => (
   <BrowserRouter>
     <div>
       <Headerr />
       <Switch>
-        <Route path="/" component={ExpenseDashboardPage} exact={true} />
+        <Route path="/" component={LoginPage} exact={true} />
+        <Route path="/dashboard" component={ExpenseDashboardPage}/>
         <Route path="/create" component={AddGatePass} />
         <Route path="/edit/:id" component={EditExpensePage} />
         <Route path="/help" component={HelpPage} />
