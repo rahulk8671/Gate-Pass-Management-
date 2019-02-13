@@ -97,6 +97,7 @@ export const setChangeInStatus = (id) => {
         isOut: !checkIsOut
       }).then(() => {
         dispatch(changeInStatus(id));
+        message.success('success');
       }).catch((e) => {
         message.error('changeInStatus failed');
       })
@@ -118,6 +119,8 @@ export const setChangeOutTime = (id) => {
       outTime: moment().valueOf()
     }).then(() => {
       dispatch(changeOutTime(id));
+    }).catch((e) => {
+      message.error('changeOutTime failed');
     })
   }
 }

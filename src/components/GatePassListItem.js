@@ -21,17 +21,15 @@ export class GatePassListItem extends React.Component {
   onChange = (checked) => {
     //this.setState(() => ({ checkIn: checked })); 
     const { id } = this.props;
-   
-    message.loading('Action in progress', this.props.setChangeInStatus(id), this.props.setChangeOutTime(id))
-      .then(() => message.success('Loading finished', 2.5));
+    this.props.setChangeInStatus(id);
+    this.props.setChangeOutTime(id);
   }
 
   reset = (e) => {
     e.preventDefault();
     const { id } = this.props;
-    //alert('hi');
-    message.loading('Action in progress', this.props.setReset(id), this.props.setChangeInStatus(id))
-      .then(() => message.success('Loading finished', 2.5));
+    this.props.setReset(id);
+    this.props.setChangeInStatus(id);
   }
 
   download = (e) => {
