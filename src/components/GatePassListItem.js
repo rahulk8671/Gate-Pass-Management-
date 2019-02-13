@@ -4,7 +4,7 @@ import moment, { max } from 'moment';
 import { Card, Divider, Button } from 'antd';
 import { Switch } from 'antd';
 import { connect } from 'react-redux';
-import { changeInStatus, changeOutTime, reset } from '../actions/gatepasses';
+import { setChangeInStatus, setChangeOutTime, setReset } from '../actions/gatepasses';
 import jsPDF from 'jspdf';
 import indi from '../../public/images/indi';
 
@@ -21,16 +21,16 @@ export class GatePassListItem extends React.Component {
   onChange = (checked) => {
     //this.setState(() => ({ checkIn: checked })); 
     const { id } = this.props;
-    this.props.changeInStatus(id);
-    this.props.changeOutTime(id);
+    this.props.setChangeInStatus(id);
+    this.props.setChangeOutTime(id);
   }
 
   reset = (e) => {
     e.preventDefault();
     const { id } = this.props;
     //alert('hi');
-    this.props.reset(id);
-    this.props.changeInStatus(id);
+    this.props.setReset(id);
+    this.props.setChangeInStatus(id);
   }
 
   download = (e) => {
@@ -100,9 +100,9 @@ export class GatePassListItem extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeInStatus: (id) => dispatch(changeInStatus(id)),
-  changeOutTime: (id) => dispatch(changeOutTime(id)),
-  reset: (id) => dispatch(reset(id))
+  setChangeInStatus: (id) => dispatch(setChangeInStatus(id)),
+  setChangeOutTime: (id) => dispatch(setChangeOutTime(id)),
+  setReset: (id) => dispatch(setReset(id))
 });
 
 export default connect(undefined, mapDispatchToProps)(GatePassListItem);

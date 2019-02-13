@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
+import moment from 'moment';
 
 // ADD_GATEPASS
 export const addGatePass = (
@@ -85,17 +86,58 @@ export const changeInStatus = (id) => ({
   id
 });
 
+export const setChangeInStatus = (id) => {
+  return (dispatch) => {
+    let checkIsOut
+    database.ref(`gatepass/${id}/isOut`).once('value').then((snapshot) => {
+      checkIsOut = snapshot.val();
+      
+      return database.ref(`gatepass/${id}`).update({
+        isOut: !checkIsOut
+      }).then(() => {
+        dispatch(changeInStatus(id));
+      });
+    })
+  }
+}
+
 //UPDATE_OUTTIME
 export const changeOutTime = (id) => ({
   type: 'UPDATE_OUTTIME',
   id
 });
 
+export const setChangeOutTime = (id) => {
+  return (dispatch) => {
+    return database.ref(`gatepass/${id}`).update({
+      outTime: moment().valueOf()
+    }).then(() => {
+      dispatch(changeOutTime(id));
+    })
+  }
+}
+
 //RESET
 export const reset = (id) => ({
   type: "RESET",
   id
 });
+
+export const setReset = (id) => {
+  return (dispatch) => {
+    let checkIsOut
+    database.ref(`gatepass/${id}/isOut`).once('value').then((snapshot) => {
+      checkIsOut = snapshot.val();
+
+      return database.ref(`gatepass/${id}`).update({
+        outTime: null,
+        isOut: !checkIsOut
+      })
+    }).then(() => {
+      dispatch(reset(id));
+    })
+  }
+}
 
 //SET_GATEPASS
 export const setGatePasses = (gatepass) => ({
