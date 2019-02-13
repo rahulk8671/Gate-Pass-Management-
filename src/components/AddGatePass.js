@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 //import ExpenseForm from './ExpenseForm';
 import { startAddGatepass } from '../actions/gatepasses';
 import GatePassForm from './GatePassForm';
+import { Switch, message } from 'antd';
 
 export class AddGatePass extends React.Component {
     onSubmit = (gatepass) => {
       //console.log(gatepass);
-      this.props.startAddGatepass(gatepass)//.then(() => console.log('hi'));
-      this.props.history.push('/');
+      message.loading('Action in process', this.props.startAddGatepass(gatepass)).then(() => message.success('success'));
+      this.props.history.push('/dashboard');
     };
     render() {
       return (          
