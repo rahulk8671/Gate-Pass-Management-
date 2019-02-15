@@ -8,7 +8,7 @@ import { Switch, message } from 'antd';
 export class AddGatePass extends React.Component {
     onSubmit = (gatepass) => {
       //console.log(gatepass);
-      message.loading('Action in process', this.props.startAddGatepass(gatepass)).then(() => message.success('success'));
+      this.props.startAddGatepass(gatepass);
       this.props.history.push('/dashboard');
     };
     render() {
