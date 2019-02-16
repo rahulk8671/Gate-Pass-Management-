@@ -39,7 +39,8 @@ export const addGatePass = (
 
 //startAddGatepass
 export const startAddGatepass = (gatePassData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const {
       Name = '',
       MobileNO = '',
@@ -56,7 +57,7 @@ export const startAddGatepass = (gatePassData = {}) => {
     
     const gatePass = {Name, MobileNO, PassNo, createdAt, createdAtTime, ToMeet, Purpose, Address, image, isOut, outTime};
     
-    return database.ref('gatepass').push(gatePass).then((ref) => {
+    return database.ref(`users/${uid}/gatepass`).push(gatePass).then((ref) => {
       console.log('data',gatePass);
       dispatch(addGatePass({
         id: ref.key,
@@ -88,12 +89,13 @@ export const changeInStatus = (id) => ({
 });
 
 export const setChangeInStatus = (id) => {
-  return (dispatch) => {
-    let checkIsOut
-    database.ref(`gatepass/${id}/isOut`).once('value').then((snapshot) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    let checkIsOut;
+    database.ref(`users/${uid}/gatepass/${id}/isOut`).once('value').then((snapshot) => {
       checkIsOut = snapshot.val();
       
-      return database.ref(`gatepass/${id}`).update({
+      return database.ref(`users/${uid}/gatepass/${id}`).update({
         isOut: !checkIsOut
       }).then(() => {
         dispatch(changeInStatus(id));
@@ -114,8 +116,9 @@ export const changeOutTime = (id) => ({
 });
 
 export const setChangeOutTime = (id) => {
-  return (dispatch) => {
-    return database.ref(`gatepass/${id}`).update({
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/gatepass/${id}`).update({
       outTime: moment().valueOf()
     }).then(() => {
       dispatch(changeOutTime(id));
@@ -132,12 +135,13 @@ export const reset = (id) => ({
 });
 
 export const setReset = (id) => {
-  return (dispatch) => {
-    let checkIsOut
-    database.ref(`gatepass/${id}/isOut`).once('value').then((snapshot) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    let checkIsOut;
+    database.ref(`users/${uid}/gatepass/${id}/isOut`).once('value').then((snapshot) => {
       checkIsOut = snapshot.val();
 
-      return database.ref(`gatepass/${id}`).update({
+      return database.ref(`users/${uid}/gatepass/${id}`).update({
         outTime: null,
         isOut: !checkIsOut
       })
@@ -154,9 +158,10 @@ export const setGatePasses = (gatepass) => ({
 });
 
 export const startSetGatePasses = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     
-    return database.ref('gatepass').once('value').then((snapshot) => {
+    return database.ref(`users/${uid}/gatepass`).once('value').then((snapshot) => {
       const gatepass = [];
 
       snapshot.forEach((childSnapshot) => {

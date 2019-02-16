@@ -9,7 +9,7 @@ const { Header, Content, Footer } = Layout;
   
   <Layout className="layout">
   <Header>
-      <NavLink to="/dashboard" activeClassName="is-active" exact={true}>Dashboard</NavLink>
+      <NavLink to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
       <NavLink className="cre" to="/create" activeClassName="is-active">Create GatePass</NavLink>
       <button onClick={props.startLogOut}>Log Out</button>
   </Header>
