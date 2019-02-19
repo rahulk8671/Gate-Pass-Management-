@@ -2,12 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import Headerr from '../components/Headerr';
+import { Affix, Button } from 'antd';
 
 export const PrivateRoute = ({ isAuthenticated, component: Component, ...rest }) => (
     <Route {...rest} component={(props) => (
         isAuthenticated ? (
             <div>
-                <Headerr />
+                <Affix offsetTop={0}>
+                    <Headerr />
+                </Affix>
+                
                 <Component {...props}/>
             </div>
             
