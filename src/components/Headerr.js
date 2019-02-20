@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Button } from 'antd';
 import { startLogOut } from '../actions/auth';
 import { connect } from 'react-redux';
 const { Header, Content, Footer } = Layout;
@@ -11,7 +11,7 @@ const { Header, Content, Footer } = Layout;
   <Header>
       <NavLink to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
       <NavLink className="cre" to="/create" activeClassName="is-active">Create GatePass</NavLink>
-      <button onClick={props.startLogOut}>Log Out</button>
+      <Button onClick={props.startLogOut}>Log Out</Button>
   </Header>
   </Layout>
 );
@@ -26,4 +26,4 @@ export default connect(undefined, mapDispatchToProps)(Headerr);
 //     <h1>GatePass</h1>
 //     <NavLink to="/" activeClassName="is-active" exact={true}>Dashboard</NavLink>
 //     <NavLink to="/create" activeClassName="is-active">Create GatePass</NavLink>
-//   </header>
+//  </header>

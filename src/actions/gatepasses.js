@@ -58,7 +58,6 @@ export const startAddGatepass = (gatePassData = {}) => {
     const gatePass = {Name, MobileNO, PassNo, createdAt, createdAtTime, ToMeet, Purpose, Address, image, isOut, outTime};
     
     return database.ref(`users/${uid}/gatepass`).push(gatePass).then((ref) => {
-      console.log('data',gatePass);
       dispatch(addGatePass({
         id: ref.key,
         ...gatePass
