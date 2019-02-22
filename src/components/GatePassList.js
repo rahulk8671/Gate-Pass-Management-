@@ -5,7 +5,7 @@ import selectGatePasses from '../selectors/gatepasses';
 import { Empty } from 'antd';
 
 export const GatePassList = (props) => (
-  <div>
+  <div className="content-container">
     {
       props.gatepasses.length === 0 ? (
         <div className="spcae"><Empty /></div>

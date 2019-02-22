@@ -1,0 +1,16 @@
+.content-container {
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 0 $m-size;
+}
+
+.page-header {
+    display: flex;
+    background: #f7f7f7;
+    margin-bottom: $m-size;
+}
+
+.summary-title {
+    font-weight: 300;
+    margin: 1rem 0;
+}

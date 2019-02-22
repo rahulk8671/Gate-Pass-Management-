@@ -7,13 +7,23 @@ const { Header, Content, Footer } = Layout;
 
  export const Headerr = (props) => (
   
-  <Layout className="layout">
-  <Header>
-      <NavLink to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
-      <NavLink className="cre" to="/create" activeClassName="is-active">Create GatePass</NavLink>
-      <Button onClick={props.startLogOut}>Log Out</Button>
-  </Header>
-  </Layout>
+ 
+  <header className="header">
+      <div className="content-container">
+        <div className="header__content">
+          <div className="header__navlink">
+            <NavLink className="header__nav1" to="/dashboard" activeClassName="is-active">Dashboard</NavLink>
+            <NavLink className="header__nav2" to="/create" activeClassName="is-active">Create GatePass</NavLink>
+          </div>
+          <div>
+            <Button ghost onClick={props.startLogOut}>Log Out</Button>
+          </div>
+        </div>
+        
+        
+      </div>
+  </header>
+ 
 );
 
 const mapDispatchToProps = (dispatch) => ({

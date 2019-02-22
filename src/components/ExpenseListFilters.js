@@ -44,24 +44,37 @@ export class ExpenseListFilters extends React.Component {
   render() {
 
     return (
-      <div className="filter">
+      <div className="content-container">
 
-        <div className="ser"><Input
-          type="text"
-          value={this.props.filters.text}
-          onChange={this.onTextChange}
-          placeholder='Search...'
-        /></div>
-        <RangePicker
+        <div className="input-group">
+
+          <div className="input-group__item rp">
+            <Input
+              type="text"
+              value={this.props.filters.text}
+              onChange={this.onTextChange}
+              placeholder='Search...'
+            />
+          </div>
+
+          <div className="input-group__item">
+            <RangePicker
+              className="rp"
+              defaultValue={[this.state.startOf, this.state.endOf]}
+              onChange={this.onChange}
+            />
+          </div>
           
-          defaultValue={[this.state.startOf, this.state.endOf]}
-          onChange={this.onChange}
-        />
-        <Select value={this.state.value} style={{ width: 120 }} onChange={this.handleChange}>
-          <Option value="IN">IN</Option>
-          <Option value="OUT">OUT</Option>
-          <Option value="ALL">ALL</Option>
-        </Select>
+          <div className="input-group__item">
+            <Select value={this.state.value} style={{ width: 120 }} onChange={this.handleChange}>
+              <Option value="IN">IN</Option>
+              <Option value="OUT">OUT</Option>
+              <Option value="ALL">ALL</Option>
+            </Select>
+          </div>
+          
+        </div>
+        
       </div>
     );
   }

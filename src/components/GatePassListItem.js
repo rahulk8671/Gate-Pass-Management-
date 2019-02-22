@@ -77,7 +77,7 @@ export class GatePassListItem extends React.Component {
     const { id, Name, createdAt, createdAtTime, image, Purpose, isOut, outTime } = this.props;
     return (
       <div> 
-      <Divider/>
+      
         <Card
           size="small"
           title={Name}
