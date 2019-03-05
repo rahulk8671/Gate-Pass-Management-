@@ -1,0 +1,75 @@
+.gatepass {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border: 1px solid #c1c1c1;
+    margin-bottom: 1rem;
+}
+
+.first_side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.second_side {
+    // padding-right: 6rem;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    width: 20rem;
+    
+}
+
+
+.details {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-end;
+    // padding-left: 6rem;
+    p {
+        background-color: #f7f7f7;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.second_side2 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10rem;
+
+    p {
+        background-color: #f7f7f7;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.gate {
+    max-width: 80rem;
+}
+
+.out {
+    display: flex;
+    margin: 1rem 0 0 0;
+    p {
+        margin-left: 0.5rem;
+
+    }
+}
+
+.download_button {
+    margin-bottom: 1rem;
+}
+
+.create_button {
+    margin-bottom: 1rem;
+}
+
+.reset_button {
+    margin-bottom: 1rem;
+}

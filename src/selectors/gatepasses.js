@@ -7,7 +7,7 @@ export default (gatepasses, { text, startDate, endDate, sortBy, inOut }) => {
     const createdAtMoment = moment(gatepass.createdAt);
     const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
     const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
-    const textMatch = gatepass.Name.toLowerCase().includes(text.toLowerCase());
+    const textMatch = gatepass.Name.toLowerCase().includes(text.toLowerCase()) || gatepass.MobileNO.includes(text);
 
     return startDateMatch && endDateMatch && textMatch;
   }).sort((a, b) => {

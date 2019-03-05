@@ -4,7 +4,7 @@ import moment, { max } from 'moment';
 import { Card, Divider, Button } from 'antd';
 import { Switch, message } from 'antd';
 import { connect } from 'react-redux';
-import { setChangeInStatus, setChangeOutTime, setReset } from '../actions/gatepasses';
+import { setChangeInStatus, setChangeOutTime, setReset, startAddGatepass } from '../actions/gatepasses';
 import jsPDF from 'jspdf';
 import indi from '../../public/images/indi';
 
@@ -73,26 +73,63 @@ export class GatePassListItem extends React.Component {
 
     doc.save('gatepass.pdf');
   }
+
+  createAgain = () => {
+    const gatepass = {
+        Name: this.props.Name,
+        MobileNO: this.props.MobileNO,
+        PassNo: this.props.PassNo,
+        createdAt: moment().valueOf(),
+        createdAtTime: moment().valueOf(),
+        ToMeet: this.props.ToMeet,
+        Purpose: this.props.Purpose,
+        Address: this.props.Address,
+        image: this.props.image,
+        isOut: this.props.isOut
+      }
+      this.props.startAddGatepass(gatepass);
+  }
   render() {
-    const { id, Name, createdAt, createdAtTime, image, Purpose, isOut, outTime } = this.props;
+    const { id, Name, createdAt, createdAtTime, image, Purpose, isOut, outTime, PassNo, ToMeet, Address, MobileNO } = this.props;
     return (
-      <div> 
-      
-        <Card
-          size="small"
-          title={Name}
-          style={{ width: max }}
-        >
-          <img src={image} alt="" width={250}/>
-          <p>{moment(createdAt).format("L")}</p>
-          <p>{moment(createdAtTime).format('hh:mm A')}</p>
-          <p>{Purpose}</p>
-          <Switch disabled={!!outTime} checked={isOut} onChange={this.onChange}/>
-          {isOut ? <p>IN</p> : <p>OUT</p>}
-          {outTime && <p>{moment(outTime).format('hh:mm A')}</p>}
-          <div className="grbt"><Button onClick={this.download}>Download Gatepass</Button>{outTime && <Button type="danger" onClick={this.reset}>Reset</Button>}</div>
-          
-        </Card>
+      <div className="gatepass"> 
+          <div className="first_side">
+            <img src={image} alt="" width={230}/>
+            
+            <div className="out">
+              <Switch disabled={!!outTime} checked={isOut} onChange={this.onChange}/>
+              {isOut ? <p>IN</p> : <p>OUT</p>}
+              {outTime && <p>{moment(outTime).format('hh:mm A')}</p>}
+            </div>
+            <div className="download_button"><Button onClick={this.download} icon="download">Download Gatepass</Button></div>
+            <div className="create_button"><Button onClick={this.createAgain} style={{width: '18.2rem'}}>Create Again</Button></div>
+            {outTime && <div className="reset_button"><Button style={{width: '18.2rem'}} type="danger" onClick={this.reset}>Reset</Button></div>}
+          </div>
+          <div className="second_side2">
+
+          <div className="details">
+              <p>Pass No</p>
+              <p>Name</p>
+              <p>Date</p>
+              <p>To Meet</p>
+              <p>Purpose</p>
+              <p>Time</p>
+              <p>Address</p>
+              <p>Mobile No</p>
+          </div>
+
+          <div className="second_side">
+            <p>{PassNo ? PassNo : 'null'}</p>
+            <p>{Name ? Name : 'null'}</p>
+            <p>{moment(createdAt).format("L")}</p>
+            <p>{ToMeet ? ToMeet : 'null'}</p>
+            <p>{Purpose ? Purpose : 'null'}</p>
+            <p>{moment(createdAtTime).format('hh:mm A')}</p>
+            <p>{Address ? Address : 'null'}</p>
+            <p>{MobileNO ? MobileNO : 'null'}</p>
+          </div>
+
+          </div>
       </div>
     )
   }
@@ -101,7 +138,8 @@ export class GatePassListItem extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   setChangeInStatus: (id) => dispatch(setChangeInStatus(id)),
   setChangeOutTime: (id) => dispatch(setChangeOutTime(id)),
-  setReset: (id) => dispatch(setReset(id))
+  setReset: (id) => dispatch(setReset(id)),
+  startAddGatepass: (gatepass) => dispatch(startAddGatepass(gatepass))
 });
 
 export default connect(undefined, mapDispatchToProps)(GatePassListItem);
