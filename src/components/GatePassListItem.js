@@ -85,7 +85,7 @@ export class GatePassListItem extends React.Component {
         Purpose: this.props.Purpose,
         Address: this.props.Address,
         image: this.props.image,
-        isOut: this.props.isOut
+        isOut: true
       }
       this.props.startAddGatepass(gatepass);
   }
@@ -99,7 +99,7 @@ export class GatePassListItem extends React.Component {
             <div className="out">
               <Switch disabled={!!outTime} checked={isOut} onChange={this.onChange}/>
               {isOut ? <p>IN</p> : <p>OUT</p>}
-              {outTime && <p>{moment(outTime).format('hh:mm A')}</p>}
+              {outTime && <p style={{color: 'red'}}>{moment(outTime).format('hh:mm A')}</p>}
             </div>
             <div className="download_button"><Button onClick={this.download} icon="download">Download Gatepass</Button></div>
             <div className="create_button"><Button onClick={this.createAgain} style={{width: '18.2rem'}}>Create Again</Button></div>
