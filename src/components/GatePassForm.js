@@ -98,7 +98,7 @@ export default class GatePassForm extends React.Component {
         facingMode: "user"
       };
     return (
-    <Col span={16} className="gate-pass-form">
+    <div className="gate-pass-form">
         {this.state.error && <p>{this.state.error}</p>}
         <div className="cam">
           <Webcam
@@ -168,7 +168,7 @@ export default class GatePassForm extends React.Component {
               <button>Add Gatepass</button>
           </form>
         </div>
-        </Col>
+        </div>
     )
   }
 }
