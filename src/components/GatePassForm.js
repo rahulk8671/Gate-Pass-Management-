@@ -3,6 +3,7 @@ import moment from 'moment';
 import { TimePicker, Select, DatePicker, Input, Button } from 'antd';
 import Webcam from "react-webcam";
 import { Row, Col } from 'antd';
+import { inherits } from 'util';
 
 
 export default class GatePassForm extends React.Component {
@@ -30,7 +31,7 @@ export default class GatePassForm extends React.Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
-    localStorage.setItem('img', imageSrc);
+    //localStorage.setItem('img', imageSrc);
     this.setState(() => ({ image: imageSrc }))
   };
   onChange = time => this.setState({ createdAtTime: time });
@@ -103,19 +104,21 @@ export default class GatePassForm extends React.Component {
         <div className="cam">
           <Webcam
             audio={false}
-            height={350}
+            height={200}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
             width={350}
             videoConstraints={videoConstraints}
           />
-          <button onClick={this.capture}>Capture photo</button>
-          <img src={this.state.image} alt=""/>
+          <div className="capture_btn"><button className="button" onClick={this.capture}>Capture photo</button></div>
+          <div className="pic"><img src={this.state.image} alt=""/></div>
         </div>
+
       <div className="form-div">
         <form onSubmit={this.onSubmit}>
               <Input
-                  style={{ width: 200}}
+                  
+                  style={{ width: 'inherit'}}
                   type="text"
                   placeholder="Name"
                   autoFocus
@@ -123,52 +126,59 @@ export default class GatePassForm extends React.Component {
                   onChange={this.onNameChange}
               />
               <Input
-                  style={{ width: 200}}
+                 
+                  style={{ width: 'inherit'}}
                   type="text"
                   placeholder="Mobile number"
                   value={this.state.MobileNO}
                   onChange={this.onMobileChange}
               />
               <Input
-                  style={{ width: 200}}
+                  
+                  style={{ width: 'inherit'}}
                   type="text"
                   placeholder="Pass number"
                   value={this.state.PassNo}
                   onChange={this.onPassChange}
               />
               <DatePicker
+                  className="inp"
                   defaultValue={this.state.createdAt}
                   onChange={this.onDateChange}
               />
               <TimePicker
+                  className="inp"
                   defaultValue={this.state.createdAtTime}
                   onChange={this.onChange}
               />
               <Input
-                  style={{ width: 200}}
+                  
+                  style={{ width: 'inherit'}}
                   type="text"
                   placeholder="To Meet"
                   value={this.state.ToMeet}
                   onChange={this.onToMeetChange}
               />
               <Input
-                  style={{ width: 200}}
+                  
+                  style={{ width: 'inherit'}}
                   type="text"
                   placeholder="Purpose"
                   value={this.state.Purpose}
                   onChange={this.onPurposeChange}
               />
               <Input
-                  style={{ width: 200}}
+                  
+                  style={{ width: 'inherit'}}
                   type="text"
                   placeholder="Address"
                   value={this.state.Address}
                   onChange={this.onAddressChange}
               />
-              <button>Add Gatepass</button>
+              <button className="button">Add Gatepass</button>
           </form>
         </div>
-        </div>
+      </div>
     )
   }
 }

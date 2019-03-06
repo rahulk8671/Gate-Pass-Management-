@@ -1,48 +1,104 @@
+// .gate-pass-form {
+//     display: flex !important;
+//     width: 100% !important;
+//     height: 100% !important;
+//     background-color: rgb(255, 255, 255);
+//     >div {
+//         flex-grow: 1;
+//     }
+//     >.cam {
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: flex-start;
+//         >button {
+//             margin-bottom: 20px;
+//             border-radius: 5px;
+//             border: 1px solid;
+//             padding: 7px;
+//             background-color: rgb(255, 255, 255);
+//             font-weight: 600;
+//             &:hover {
+//                 border-color: rgb(16, 153, 216);
+//                 color: rgb(16, 153, 216);
+//             }
+//         }
+//     }
+//     >.form-div {
+//         form {
+//             width: 100%;
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: space-evenly;
+//             height: 85%;
+//             width: 50%;
+//             >button {
+//                 border-radius: 5px;
+//                 border: 1px solid;
+//                 padding: 7px;
+//                 background-color: rgb(255, 255, 255);
+//                 font-weight: 600;
+//                 &:hover {
+//                     border-color: rgb(16, 153, 216);
+//                     color: rgb(16, 153, 216);
+//                 }
+//             }
+//         }
+//     }
+// }
+
 .gate-pass-form {
-    display: flex !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: rgb(255, 255, 255);
-    >div {
-        flex-grow: 1;
+    display: flex;
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 0 1.6rem;
+    height: 93vh;
+    justify-content: space-around;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: inherit;
+        //max-width: 30rem;
+        height: 100%;
+        justify-content: space-evenly;
     }
-    >.cam {
+
+    .form-div {
+        width: 30rem;
+    }
+
+    .cam {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        >button {
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid;
-            padding: 7px;
-            background-color: rgb(255, 255, 255);
-            font-weight: 600;
-            &:hover {
-                border-color: rgb(16, 153, 216);
-                color: rgb(16, 153, 216);
-            }
-        }
+        margin-top: 5rem;
     }
-    >.form-div {
-        form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            height: 85%;
-            width: 50%;
-            >button {
-                border-radius: 5px;
-                border: 1px solid;
-                padding: 7px;
-                background-color: rgb(255, 255, 255);
-                font-weight: 600;
-                &:hover {
-                    border-color: rgb(16, 153, 216);
-                    color: rgb(16, 153, 216);
-                }
-            }
-        }
+
+    .capture_btn {
+        margin: 3rem 3rem;
     }
+
+    .pic {
+        width: 350px;
+        height: 200px;
+    }
+
+    .inp {
+        width: inherit;
+    }
+
+    .button {
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid;
+        padding: 7px;
+        background-color: rgb(255, 255, 255);
+        font-weight: 600;
+        &:hover {
+            border-color: rgb(16, 153, 216);
+            color: rgb(16, 153, 216);
+        }
+}
+
 }
